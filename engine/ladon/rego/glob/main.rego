@@ -13,9 +13,9 @@ allow {
 
 decide_allow(policies, roles) {
     effects := [effect | effect := policies[i].effect
-        matcher(policies[i].resources, request.resource)
-        match_subjects(policies[i].subjects, roles, request.subject)
         matcher(policies[i].actions, request.action)
+        match_subjects(policies[i].subjects, roles, request.subject)
+        matcher(policies[i].resources, request.resource)
         condition.all_conditions_true(policies[i])
     ]
 
